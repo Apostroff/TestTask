@@ -26,25 +26,9 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//
+
 		setupGLSurface();
-		/*
-		setContentView(R.layout.activity_main);
-		Button bt = (Button)findViewById(R.id.bt);
-		bt.setBackgroundResource(R.drawable.button_background);
-		
-		Drawable back= getResources().getDrawable(R.drawable.button_background);
-		back.setState(new int[]{android.R.attr.state_pressed});
-		
-		Bitmap bitmap = Bitmap.createBitmap(150, 150, Config.ARGB_8888);
-		Canvas canvas = new Canvas(bitmap);
-		back.setBounds(new Rect(0,0,150,150));
-		back.draw(canvas);
-		
-		
-		ImageView im = (ImageView)findViewById(R.id.imageView1);
-		im.setImageBitmap(bitmap);
-		*/
+
 	}
 	
 	private void setupGLSurface(){
@@ -63,7 +47,7 @@ public class MainActivity extends Activity {
         	mGLView.setRenderer(mRender);
         	
         	mGLView.getHolder().setFormat(PixelFormat.RGBA_8888);
-        	mGLView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+        	mGLView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
         	
         }else {
         	Toast.makeText(this, "Device doesn't support OpenGL ES 2.0 !", Toast.LENGTH_LONG).show();
@@ -77,14 +61,14 @@ public class MainActivity extends Activity {
     protected void onResume() {
         // The activity must call the GL surface view's onResume() on activity onResume().
         super.onResume();
-     //   mGLView.onResume();
+        mGLView.onResume();
     }
 
     @Override
     protected void onPause() {
         // The activity must call the GL surface view's onPause() on activity onPause().
         super.onPause();
-    //    mGLView.onPause();
+        mGLView.onPause();
     }
 
 
